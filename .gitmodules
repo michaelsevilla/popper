@@ -1,3 +1,0 @@
-[submodule "templates/experiments/linux-cgroups/docker"]
-	path = templates/experiments/linux-cgroups/docker
-	url = https://github.com/ivotron/kernel-ci
