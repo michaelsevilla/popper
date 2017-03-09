@@ -81,6 +81,13 @@ response.form_label_separator = myconf.get('forms.separator') or ''
 # -------------------------------------------------------------------------
 
 from gluon.tools import Auth, Service, PluginManager
+from gluon.contrib.login_methods.basic_auth import basic_auth
+import jenkins
+
+server = jenkins.Jenkins('http://localhost:8080', username='admin', password='admin')
+user = server.get_whoami()
+version = server.get_version()
+print('Hello %s from Jenkins %s' % (user['fullName'], version))
 
 # host names must be a list of allowed host names (glob syntax allowed)
 auth = Auth(db, host_names=myconf.get('host.names'))
@@ -90,7 +97,7 @@ plugins = PluginManager()
 # -------------------------------------------------------------------------
 # create all tables needed by auth if not custom tables
 # -------------------------------------------------------------------------
-auth.define_tables(username=False, signature=False)
+auth.define_tables(username=True, signature=False)
 
 # -------------------------------------------------------------------------
 # configure email

@@ -9,6 +9,7 @@
 # -------------------------------------------------------------------------
 
 
+@auth.requires_login()
 def index():
     """
     example action using the internationalization operator T and flash
@@ -36,7 +37,11 @@ def user():
     to decorate functions that need access control
     also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users
     """
-    return dict(form=auth())
+    form = auth()
+    if form.process().accepted:
+        print "Username: " + form.vars.username
+        print "Password: " + str(form.vars.password)
+    return dict(form=form)
 
 
 @cache.action()
