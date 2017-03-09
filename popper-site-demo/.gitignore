@@ -38,10 +38,8 @@ parameters*.py
 ./examples.w2p
 cron.master
 applications/*
-!applications/welcome
-!applications/welcome/*
-!applications/examples
-!applications/examples/*
+!applications/popperci
+!applications/popperci/*
 !applications/admin
 !applications/admin/*
 applications/*/databases/*
